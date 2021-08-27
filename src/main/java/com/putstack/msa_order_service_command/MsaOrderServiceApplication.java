@@ -1,4 +1,4 @@
-package com.putstack.msa_order_service;
+package com.putstack.msa_order_service_command;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
