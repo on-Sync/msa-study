@@ -5,13 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 public class OrderDTO {
-    private String orderId;
     private String userId;
     private String productId;
     private int qty;
     private int unitPrice;
-    private int totalPrice;
 }

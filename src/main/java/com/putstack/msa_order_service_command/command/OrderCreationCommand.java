@@ -11,11 +11,8 @@ import lombok.ToString;
 @ToString
 public class OrderCreationCommand {
     @TargetAggregateIdentifier
-    private String orderId;
     private String userId;
     private String productId;
     private int qty;
     private int unitPrice;
-    private int totalPrice;
-
 }

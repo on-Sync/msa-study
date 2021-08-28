@@ -25,12 +25,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public CompletableFuture<String> createOrder(OrderDTO orderDTO) {
         return commandGateway.send(new OrderCreationCommand(
-            orderDTO.getOrderId(), 
             orderDTO.getUserId(), 
             orderDTO.getProductId(), 
             orderDTO.getQty(), 
-            orderDTO.getUnitPrice(), 
-            orderDTO.getTotalPrice()
+            orderDTO.getUnitPrice()
         ));
     }
 

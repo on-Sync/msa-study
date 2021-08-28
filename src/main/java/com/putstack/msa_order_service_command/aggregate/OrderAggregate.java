@@ -1,5 +1,7 @@
 package com.putstack.msa_order_service_command.aggregate;
 
+import java.util.UUID;
+
 import com.putstack.msa_order_service_command.command.OrderCancelCommand;
 import com.putstack.msa_order_service_command.command.OrderCreationCommand;
 import com.putstack.msa_order_service_command.events.OrderCancelEvent;
@@ -12,9 +14,11 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @AllArgsConstructor
 @Aggregate
+@Log4j2
 public class OrderAggregate {
     @AggregateIdentifier
     private String orderId;
@@ -26,18 +30,22 @@ public class OrderAggregate {
 
     @CommandHandler
     public OrderAggregate(OrderCreationCommand command) {
+        log.debug("CommandHandler {}", command);
+        
         AggregateLifecycle.apply(new OrderCreationEvent(
-            command.getOrderId(), 
+            UUID.randomUUID().toString(), 
             command.getUserId(), 
             command.getProductId(), 
             command.getQty(), 
             command.getUnitPrice(), 
-            command.getTotalPrice()
+            command.getUnitPrice() * command.getQty()
         ));
     }
 
     @EventSourcingHandler
     public void createOrder(OrderCreationEvent event) {
+        log.debug("AggregateLifecycle.apply {}", event);
+
         this.orderId = event.getOrderId();
         this.userId = event.getUserId();
         this.productId = event.getProductId();
@@ -48,6 +56,8 @@ public class OrderAggregate {
 
     @CommandHandler
     public void cancelOrder(OrderCancelCommand command) {
+        log.debug("CommandHandler {}", command);
+
         AggregateLifecycle.apply(new OrderCancelEvent(
             command.getOrderId()
         ));
@@ -55,6 +65,8 @@ public class OrderAggregate {
 
     @EventSourcingHandler
     public void cancelOrder(OrderCancelEvent event) {
+        log.debug("AggregateLifecycle.apply {}", event);
+
         this.orderId = event.getOrderId();
         this.qty = 0;
         this.totalPrice = 0;
