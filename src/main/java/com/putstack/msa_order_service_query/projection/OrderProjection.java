@@ -8,7 +8,9 @@ import com.putstack.msa_order_service_query.events.OrderCreationEvent;
 import com.putstack.msa_order_service_query.repository.OrderRepository;
 
 import org.axonframework.config.ProcessingGroup;
+import org.axonframework.eventhandling.AllowReplay;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.eventhandling.ResetHandler;
 import org.axonframework.eventhandling.Timestamp;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +30,7 @@ public class OrderProjection {
     private final static int ORDER_ARRIVED = 44;
 
     @EventHandler
+    @AllowReplay
     public void on(OrderCreationEvent event, @Timestamp Instant instant) {
         log.debug("projection {}, timestamp : {}", event, instant.toString());
 
@@ -46,6 +49,7 @@ public class OrderProjection {
     }
 
     @EventHandler
+    @AllowReplay
     public void on(OrderCancelEvent event, @Timestamp Instant instant) {
         log.debug("projection {}, timestamp : {}", event, instant.toString());
 
@@ -56,6 +60,13 @@ public class OrderProjection {
                                 .build();
 
         repository.save(entity);
+    }
+
+    @ResetHandler
+    private void resetOrderInfo() {
+        log.debug("reset ReadModel<OrderEntity>");
+
+        repository.deleteAll();
     }
 
     
