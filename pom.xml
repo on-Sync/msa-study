@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.putstack</groupId>
-	<artifactId>msa_order_service</artifactId>
+	<artifactId>msa_order_service_query</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>msa_order_service</name>
+	<name>msa_order_service_query</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -19,6 +19,12 @@
 	</properties>
 	<dependencies>
 		
+		<!-- INFO: CQRS [AXON Framework] -->
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-spring-boot-starter</artifactId>
+			<version>4.5.3</version>
+		</dependency>
 		<!-- INFO: Mapper [MapStruct] -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
