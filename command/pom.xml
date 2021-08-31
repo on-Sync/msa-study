@@ -7,18 +7,24 @@
 		<artifactId>order_service</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.putstack</groupId>
 	<artifactId>msa_order_service_command</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>Command</name>
 	<description>CQRS Command</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>msa_order_service_events</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.putstack</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>order_service</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>${project.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
