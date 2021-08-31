@@ -1,6 +1,12 @@
+server:
+  port: 8004
+logging:
+  level:
+    '[org.axonframework]': debug
+    '[com.putstack.msa_order_service]': debug
 spring:
   application:
-    name: order-service
+    name: order-service-query
   profiles:
     active:
     - dev
