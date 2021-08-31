@@ -1,4 +1,4 @@
-package com.putstack.msa_order_service.dto;
+package com.putstack.msa_order_service_command.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.putstack.msa_order_service.entity;
+package com.putstack.msa_order_service_command.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

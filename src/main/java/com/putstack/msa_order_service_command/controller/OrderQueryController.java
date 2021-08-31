@@ -1,6 +1,6 @@
-package com.putstack.msa_order_service.controller;
+package com.putstack.msa_order_service_command.controller;
 
-import com.putstack.msa_order_service.service.OrderQueryService;
+import com.putstack.msa_order_service_command.service.OrderQueryService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

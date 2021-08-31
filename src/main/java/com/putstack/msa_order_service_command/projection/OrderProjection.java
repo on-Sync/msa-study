@@ -1,3 +1,4 @@
+package com.putstack.msa_order_service_command.projection;
 // package com.putstack.msa_order_service.projection;
 
 // import java.time.Instant;

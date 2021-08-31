@@ -1,9 +1,9 @@
-package com.putstack.msa_order_service.config;
+package com.putstack.msa_order_service_command.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.putstack.msa_order_service.aggregate.OrderAggregate;
+import com.putstack.msa_order_service_command.aggregate.OrderAggregate;
 
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.SimpleCommandBus;

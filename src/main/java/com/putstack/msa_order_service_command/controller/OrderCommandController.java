@@ -1,10 +1,10 @@
-package com.putstack.msa_order_service.controller;
+package com.putstack.msa_order_service_command.controller;
 
 import java.util.concurrent.CompletableFuture;
 
-import com.putstack.msa_order_service.dto.CancelDTO;
-import com.putstack.msa_order_service.dto.OrderDTO;
-import com.putstack.msa_order_service.service.OrderCommandService;
+import com.putstack.msa_order_service_command.dto.CancelDTO;
+import com.putstack.msa_order_service_command.dto.OrderDTO;
+import com.putstack.msa_order_service_command.service.OrderCommandService;
 
 import org.springframework.web.bind.annotation.RestController;
 
