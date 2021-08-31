@@ -1,14 +1,15 @@
-package com.putstack.msa_order_service_command.dto;
+package com.putstack.msa_order_service.events;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Getter
-public class OrderDTO {
+public class OrderCreationEvent {
+    private String orderId;
     private String userId;
     private String productId;
     private int qty;
     private int unitPrice;
+    private int totalPrice;
 }

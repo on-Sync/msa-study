@@ -1,6 +1,12 @@
+server:
+  port: 8003
+logging:
+  level:
+    root: INFO
+    '[com.putstack.msa_order_service]': DEBUG
 spring:
   application:
-    name: order-service
+    name: order-service-command
   profiles:
     active:
     - dev

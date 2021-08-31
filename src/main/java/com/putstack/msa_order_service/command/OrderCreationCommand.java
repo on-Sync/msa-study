@@ -1,4 +1,4 @@
-package com.putstack.msa_order_service_command.command;
+package com.putstack.msa_order_service.command;
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class OrderCreationCommand {
     @TargetAggregateIdentifier
+    private String orderId;
     private String userId;
     private String productId;
     private int qty;

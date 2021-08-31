@@ -1,11 +1,10 @@
-package com.putstack.msa_order_service_command.aggregate;
+package com.putstack.msa_order_service.aggregate;
 
-import java.util.UUID;
 
-import com.putstack.msa_order_service_command.command.OrderCancelCommand;
-import com.putstack.msa_order_service_command.command.OrderCreationCommand;
-import com.putstack.msa_order_service_command.events.OrderCancelEvent;
-import com.putstack.msa_order_service_command.events.OrderCreationEvent;
+import com.putstack.msa_order_service.command.OrderCancelCommand;
+import com.putstack.msa_order_service.command.OrderCreationCommand;
+import com.putstack.msa_order_service.events.OrderCancelEvent;
+import com.putstack.msa_order_service.events.OrderCreationEvent;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -14,11 +13,13 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Aggregate
-@Log4j2
+@Slf4j
 public class OrderAggregate {
     @AggregateIdentifier
     private String orderId;
@@ -33,7 +34,7 @@ public class OrderAggregate {
         log.debug("CommandHandler {}", command);
         
         AggregateLifecycle.apply(new OrderCreationEvent(
-            UUID.randomUUID().toString(), 
+            command.getOrderId(), 
             command.getUserId(), 
             command.getProductId(), 
             command.getQty(), 

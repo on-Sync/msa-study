@@ -1,11 +1,10 @@
-package com.putstack.msa_order_service_command.events;
+package com.putstack.msa_order_service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class OrderCancelEvent {
+public class CancelDTO {
     private String orderId;
-
 }

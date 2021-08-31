@@ -1,4 +1,4 @@
-package com.putstack.msa_order_service_command.command;
+package com.putstack.msa_order_service.command;
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
