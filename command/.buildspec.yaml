@@ -1,0 +1,37 @@
+# AWS CodeBuild
+
+version: 0.2
+
+env:
+  parameter-store:
+    AWS_ACCOUNT_ID: /COMMON/AWS_ACCOUNT_ID
+    IMAGE_REPO_NAME: /MSA/ORDER_SERVICE/IMAGE_REPO_NAME
+    IMAGE_TAG: /MSA/ORDER_SERVICE/IMAGE_TAG
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+    commands:
+      - apt-get update -y
+      - apt-get install -y maven
+    on-failure: ABORT
+  pre_build:
+    commands:
+      - echo CI started on `date`
+      - aws ecr get-login-password --region ap-northeast-2 | docker login -u AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+    on-failure: ABORT
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn install
+    on-failure: ABORT
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG  
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+    on-failure: ABORT
+    finally:
+      - echo CI completed on `date`
