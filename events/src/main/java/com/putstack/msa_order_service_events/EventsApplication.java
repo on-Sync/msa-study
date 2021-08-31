@@ -1,4 +1,4 @@
-package com.putstack.events;
+package com.putstack.msa_order_service_events;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
