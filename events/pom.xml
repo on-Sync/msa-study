@@ -7,19 +7,10 @@
 		<artifactId>order_service</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.putstack</groupId>
-	<artifactId>msa_order_service_query</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Query</name>
-	<description>CQRS Query</description>
-
-	<dependencies>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>msa_order_service_events</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-	</dependencies>
+	<artifactId>msa_order_service_events</artifactId>
+	<name>Events</name>
+	<description>CQRS Events</description>
+  	<packaging>jar</packaging>
 
 	<dependencyManagement>
 		<dependencies>
@@ -32,5 +23,23 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+					<!-- <classifier>exec</classifier> -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

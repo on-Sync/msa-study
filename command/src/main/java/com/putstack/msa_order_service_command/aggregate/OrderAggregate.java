@@ -3,8 +3,8 @@ package com.putstack.msa_order_service_command.aggregate;
 
 import com.putstack.msa_order_service_command.command.OrderCancelCommand;
 import com.putstack.msa_order_service_command.command.OrderCreationCommand;
-import com.putstack.msa_order_service_command.events.OrderCancelEvent;
-import com.putstack.msa_order_service_command.events.OrderCreationEvent;
+import com.putstack.msa_order_service_events.events.OrderCancelEvent;
+import com.putstack.msa_order_service_events.events.OrderCreationEvent;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;

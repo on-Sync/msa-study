@@ -2,9 +2,9 @@ package com.putstack.msa_order_service_query.projection;
 
 import java.time.Instant;
 
+import com.putstack.msa_order_service_events.events.OrderCancelEvent;
+import com.putstack.msa_order_service_events.events.OrderCreationEvent;
 import com.putstack.msa_order_service_query.entity.OrderEntity;
-import com.putstack.msa_order_service_query.events.OrderCancelEvent;
-import com.putstack.msa_order_service_query.events.OrderCreationEvent;
 import com.putstack.msa_order_service_query.repository.OrderRepository;
 
 import org.axonframework.config.ProcessingGroup;
