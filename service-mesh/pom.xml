@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.putstack</groupId>
-        <artifactId>microservice</artifactId>
+        <artifactId>msa_root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.putstack</groupId>
-    <artifactId>order_service</artifactId>
+    <artifactId>service-mesh</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Order Service</name>
-	<description>Order Service</description>
+    <name>Service Mesh</name>
+	<description></description>
     <packaging>pom</packaging>
 
     <modules>
-        <module>events</module>
-        <module>command</module>
-        <module>query</module>
+        <module>config-store</module>
+        <module>discovery</module>
     </modules>
 	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>microservice</artifactId>
+				<artifactId>msa_root</artifactId>
 				<version>${project.version}</version>
 				<type>pom</type>
 				<scope>import</scope>

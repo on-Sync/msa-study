@@ -1,0 +1,23 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: config-store
+  profiles:
+    active:
+    - dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/on-Sync/msa-study
+          searchPaths: 'resource/remote-config-repositories/{application}'
+          force-pull: true
+        encrypt:
+          enabled: false
+        bootstrap: true
+encrypt:
+  key-store:
+    alias: apiEncryptionKey
+    location: file:///${user.home}/Workspace/Resource/keystore/msaAPIEncryptionKey.jks
+    password: storepass1234

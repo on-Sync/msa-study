@@ -1,0 +1,62 @@
+logging:
+  level:
+    root: DEBUG
+spring:
+  cloud:
+    gateway:
+      # default-filters:
+      # - name: GlobalFilter
+      #   args:
+      #     baseMessage: Spring Cloud Gateway Global Filter
+      #     preLogger: true
+      #     postLogger: true
+      routes:
+      # - id: user_service
+      #   uri: http://localhost:8002
+      #   predicates:
+      #   - Path=/users/**z
+      - id: user_service
+        uri: lb://USER-SERVICE
+        predicates:
+          - Path=/user_service/**
+          - Method=GET
+        filters:
+          - RemoveRequestHeader=Cookie
+          - RewritePath=/user_service/(?<segment>.*), /$\{segment}
+      - id: order_service
+        uri: lb://MSA-ORDER-SERVICE
+        predicates:
+          - Path=/order_service/**
+          - Method=GET
+        filters:
+          - RemoveRequestHeader=Cookie
+          - RewritePath=/order_service/(?<segment>.*), /$\{segment}
+      - id: catalog_service
+        uri: lb://MSA-CATALOG-SERVICE
+        predicates:
+          - Path=/catalog_service/**
+          - Method=GET
+        filters:
+          - RemoveRequestHeader=Cookie
+          - RewritePath=/catalog_service/(?<segment>.*), /$\{segment}
+encrypt:
+  key-store:
+    alias: apiEncryptionKey
+    location: file:///${user.home}/Workspace/Resource/keystore/msaAPIEncryptionKey.jks    # TODO: Windows ( file:/// ) -> Linux or Docker ( file:// ) 변경 필요
+    password: storepass1234
+signature:
+  token:
+    expiration: 86400000
+    secret: putstack
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka 
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
