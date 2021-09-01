@@ -1,0 +1,22 @@
+axon:
+  serializer:
+    general: xstream
+  axonserver:
+    enabled: true
+    servers: localhost:8124
+#   metrics:
+#     auto-configuration:
+#       enabled: true
+#   distributed:
+#     enabled: true
+#     load-factor: 100
+#     spring-cloud:
+#       mode: rest
+#       rest-mode-url: /my-custom-endpoint
+#       fallback-to-http-get: true
+#       enable-ignore-listing: true
+#       enable-accept-all-commands: true
+
+
+      
+      

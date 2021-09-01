@@ -1,0 +1,22 @@
+server:
+  port: 8004
+logging:
+  level:
+    '[org.axonframework]': debug
+    '[com.putstack.msa_order_service]': debug
+spring:
+  application:
+    name: order-service-query
+  profiles:
+    active:
+    - dev
+  cloud:
+    config:
+      uri: http://127.0.0.1:9000
+      name: ${spring.application.name}
+      profile: dev
+encrypt:
+  key-store:
+    alias: apiEncryptionKey
+    location: file:///${user.home}/Workspace/Resource/keystore/msaAPIEncryptionKey.jks
+    password: storepass1234
