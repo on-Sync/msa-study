@@ -5,7 +5,7 @@ encrypt:
     password: storepass1234
 spring:
   application:
-    name: order-service-query
+    name: api-gateway
   profiles:
     active: dev
   cloud:
