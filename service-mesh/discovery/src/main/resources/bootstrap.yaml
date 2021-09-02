@@ -1,0 +1,15 @@
+encrypt:
+  key-store:
+    alias: apiEncryptionKey
+    location: file:///${user.home}/Workspace/Resource/keystore/msaAPIEncryptionKey.jks
+    password: storepass1234
+spring:
+  application:
+    name: discovery
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://127.0.0.1:9000
+      name: ${spring.application.name}
+      profile: dev

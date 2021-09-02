@@ -16,6 +16,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>api-gateway</module>
+        <module>service-mesh</module>
         <module>microservice</module>
     </modules>
 
@@ -33,10 +35,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>

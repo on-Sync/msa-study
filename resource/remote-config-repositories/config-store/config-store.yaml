@@ -2,10 +2,7 @@ server:
   port: 9000
 logging:
   level:
-    root: ERROR
-spring:
-  application:
-    name: discovery_service
+    root: INFO
 management:
   endpoints:
     web:
