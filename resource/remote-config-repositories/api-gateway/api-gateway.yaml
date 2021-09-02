@@ -17,48 +17,19 @@ spring:
       #   uri: http://localhost:8002
       #   predicates:
       #   - Path=/users/**z
-      - id: user_service
-        uri: lb://USER-SERVICE
+      - id: order_service_command
+        uri: lb://ORDER-SERVICE-COMMAND
         predicates:
-          - Path=/user_service/**
-          - Method=GET
+          - Path=/order_service/orders/**
+          - Method=POST, DELETE, PATCH, PUT
         filters:
           - RemoveRequestHeader=Cookie
-          - RewritePath=/user_service/(?<segment>.*), /$\{segment}
-      - id: order_service
-        uri: lb://MSA-ORDER-SERVICE
+          - RewritePath=/order_service/(?<segment>.*), /$\{segment}
+      - id: order_service_query
+        uri: lb://ORDER-SERVICE-QUERY
         predicates:
-          - Path=/order_service/**
+          - Path=/order_service/orders/**
           - Method=GET
         filters:
           - RemoveRequestHeader=Cookie
           - RewritePath=/order_service/(?<segment>.*), /$\{segment}
-      - id: catalog_service
-        uri: lb://MSA-CATALOG-SERVICE
-        predicates:
-          - Path=/catalog_service/**
-          - Method=GET
-        filters:
-          - RemoveRequestHeader=Cookie
-          - RewritePath=/catalog_service/(?<segment>.*), /$\{segment}
-encrypt:
-  key-store:
-    alias: apiEncryptionKey
-    location: file:///${user.home}/Workspace/Resource/keystore/msaAPIEncryptionKey.jks    # TODO: Windows ( file:/// ) -> Linux or Docker ( file:// ) 변경 필요
-    password: storepass1234
-signature:
-  token:
-    expiration: 86400000
-    secret: putstack
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka 
-      
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
