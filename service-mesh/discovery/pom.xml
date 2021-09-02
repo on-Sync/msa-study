@@ -24,7 +24,7 @@
 		<dependencies>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>service-mesh</artifactId>
+				<artifactId>msa_root</artifactId>
 				<version>${project.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
