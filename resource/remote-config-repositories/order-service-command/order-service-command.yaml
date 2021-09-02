@@ -4,12 +4,6 @@ logging:
   level:
     root: INFO
     '[com.putstack.msa_order_service_command]': DEBUG
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka 
 axon:
   serializer:
     general: xstream
