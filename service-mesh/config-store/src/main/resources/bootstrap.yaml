@@ -1,11 +1,13 @@
-server:
-  port: 9000
+encrypt:
+  key-store:
+    alias: apiEncryptionKey
+    location: file:///${user.home}/Workspace/Resource/keystore/msaAPIEncryptionKey.jks
+    password: storepass1234
 spring:
   application:
     name: config-store
   profiles:
-    active:
-    - dev
+    active: dev
   cloud:
     config:
       server:
@@ -16,8 +18,3 @@ spring:
         encrypt:
           enabled: false
         bootstrap: true
-encrypt:
-  key-store:
-    alias: apiEncryptionKey
-    location: file:///${user.home}/Workspace/Resource/keystore/msaAPIEncryptionKey.jks
-    password: storepass1234
