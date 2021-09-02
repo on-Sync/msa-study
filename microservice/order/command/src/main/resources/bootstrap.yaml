@@ -12,3 +12,4 @@ spring:
     config:
       uri: http://127.0.0.1:9000
       name: ${spring.application.name}
+      fail-fast: true
