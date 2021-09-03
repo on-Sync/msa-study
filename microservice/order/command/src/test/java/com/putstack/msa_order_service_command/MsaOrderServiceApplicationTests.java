@@ -11,17 +11,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class MsaOrderServiceApplicationTests {
 
-	@Autowired
-    private OrderCommandService orderService;
+	// @Autowired
+    // private OrderCommandService orderService;
 
 	// @Test
-	void contextLoads() {
-	}
+	// void contextLoads() {
+	// }
 
-	@Test
-	public void createOrderTest () {
-		OrderDTO orderDTO = new OrderDTO("userId", "productId", 4, 1000);
-		orderService.createOrder(orderDTO);
-	}
+	// @Test
+	// public void createOrderTest () {
+	// 	OrderDTO orderDTO = new OrderDTO("userId", "productId", 4, 1000);
+	// 	orderService.createOrder(orderDTO);
+	// }
 
 }

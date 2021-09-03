@@ -1,9 +1,15 @@
 package com.putstack.msa_order_service_query.controller;
 
+import javax.validation.constraints.NotBlank;
+
+import com.putstack.msa_order_service_query.entity.OrderSummary;
 import com.putstack.msa_order_service_query.service.QueryService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +24,12 @@ public class OrderController {
     public ResponseEntity<?> reset() {
         queryService.reset();
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/orders/{orderId}")
+    public ResponseEntity<OrderSummary> getAccountInfo(@PathVariable @NonNull @NotBlank String orderId){
+        return ResponseEntity.status(HttpStatus.OK)
+                             .body(queryService.getOrderInfo(orderId));
     }
 
 }

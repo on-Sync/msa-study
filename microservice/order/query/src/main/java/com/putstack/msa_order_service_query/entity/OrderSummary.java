@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderEntity {
+public class OrderSummary {
     @Id
     private String orderId;
     private String userId;

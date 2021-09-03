@@ -1,7 +1,12 @@
 package com.putstack.msa_order_service_query.service;
 
+import com.putstack.msa_order_service_query.entity.OrderSummary;
+import com.putstack.msa_order_service_query.query.OrderQuery;
+import com.putstack.msa_order_service_query.repository.OrderRepository;
+
 import org.axonframework.config.Configuration;
 import org.axonframework.eventhandling.TrackingEventProcessor;
+import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -11,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 public class QueryServiceImpl implements QueryService {
 
     private final Configuration configuration;
+    private final OrderRepository repository;
+    private final QueryGateway gateway;
 
     @Override
     public void reset() {
@@ -22,4 +29,11 @@ public class QueryServiceImpl implements QueryService {
                 processor.start();
             });
     }
+
+    @Override
+    public OrderSummary getOrderInfo(String orderId) {
+        return gateway.query(new OrderQuery(orderId), OrderSummary.class).join();
+    }
+
+
 }
