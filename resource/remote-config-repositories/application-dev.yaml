@@ -1,7 +1,7 @@
 encrypt:
   key-store:
     alias: apiEncryptionKey
-    location: /app/EncryptionKey.jks
+    location: file:///${user.home}/Workspace/Resource/keystore/msaAPIEncryptionKey.jks
     password: storepass1234
 signature:
   token:
