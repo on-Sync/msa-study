@@ -1,15 +1,11 @@
-encrypt:
-  key-store:
-    alias: apiEncryptionKey
-    location: file:///${user.home}/Workspace/Resource/keystore/msaAPIEncryptionKey.jks
-    password: storepass1234
 spring:
   application:
     name: order-service-command
+  config:
+    import:
+    - classpath:cloud-config-client.yaml
   profiles:
-    active: dev
-  cloud:
-    config:
-      uri: http://127.0.0.1:9000
-      name: ${spring.application.name}
-      # fail-fast: true
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+    group:
+      "dev" : "local"
+      "stage" : "stage"

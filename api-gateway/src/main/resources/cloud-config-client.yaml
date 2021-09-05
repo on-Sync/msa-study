@@ -1,0 +1,15 @@
+spring:
+  profiles: local
+  cloud:
+    config:
+      uri: ${CONFIG_STORE_URL:http://localhost:9000}
+      name: ${spring.application.name}
+      fail-fast: true
+---
+spring:
+  profiles: stage
+  cloud:
+    config:
+      uri: ${CONFIG_STORE_URL:http://localhost:9000}
+      name: ${spring.application.name}
+      fail-fast: true
