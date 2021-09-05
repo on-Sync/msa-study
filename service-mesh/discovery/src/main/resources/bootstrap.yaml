@@ -1,11 +1,22 @@
 spring:
   application:
     name: discovery
-  config:
-    import:
-    - classpath:cloud-config-client.yaml
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
     group:
-      "dev" : "local"
-      "stage" : "stage"
+      "dev" : ${spring.application.name}, local
+      "stage" : ${spring.application.name}, stage
+  config:
+    name: ${spring.application.name}, endpoints, rabbitmq, key-store, eureka-client
+---
+spring:
+  config:
+    activate.on-profile: local
+    import:
+    - configserver:${CONFIG_STORE_URL:http://localhost:9000}
+---
+spring:
+  config:
+    activate.on-profile: stage
+    import:
+    - configserver:${CONFIG_STORE_URL:http://host.docker.internal:9000}

@@ -1,5 +1,0 @@
-encrypt:
-  key-store:
-    alias: apiEncryptionKey
-    location: classpath:/app/EncryptionKey.jks
-    password: storepass1234
