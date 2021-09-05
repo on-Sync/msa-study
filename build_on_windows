@@ -1,9 +1,0 @@
-
-# middleware
-docker build -t 'putstack/api-gateway' --build-arg APP='api-gateway' .
-docker build -t 'putstack/config-store' --build-arg APP='service-mesh/config-store' .
-docker build -t 'putstack/discovery' --build-arg APP='service-mesh/discovery' .
-
-# api
-docker build -t 'putstack/order_command' --build-arg APP='microservice/order/command' .
-docker build -t 'putstack/order_query' --build-arg APP='microservice/order/query' .
