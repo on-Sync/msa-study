@@ -1,22 +1,12 @@
-encrypt:
-  key-store:
-    alias: apiEncryptionKey
-    location: file:///${user.home}/Workspace/Resource/keystore/msaAPIEncryptionKey.jks
-    password: storepass1234
 spring:
   application:
     name: config-store
+  config:
+    import:
+    - classpath:cloud-config-server.yaml
+    - classpath:key-store.yaml
   profiles:
-    active: dev
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/on-Sync/msa-study
-          search-paths:
-            - 'resource/remote-config-repositories'
-            - 'resource/remote-config-repositories/{application}'
-          force-pull: true
-        encrypt:
-          enabled: false
-        bootstrap: true
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+    group:
+      "dev" : "native, local"
+      "stage" : "remote, stage"
