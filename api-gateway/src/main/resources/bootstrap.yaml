@@ -1,22 +1,15 @@
 spring:
   application:
     name: api-gateway
+  config:
+    import:
+    - classpath:cloud-config-server-client.yaml
+    - classpath:key-store.yaml
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
     group:
       "dev" : ${spring.application.name}, local
       "stage" : ${spring.application.name}, stage
-  config:
-    name: ${spring.application.name}, endpoints, rabbitmq, key-store, eureka-client, token
----
-spring:
-  config:
-    activate.on-profile: local
-    import:
-    - configserver:${CONFIG_STORE_URL:http://localhost:9000}
----
-spring:
-  config:
-    activate.on-profile: stage
-    import:
-    - configserver:${CONFIG_STORE_URL:http://host.docker.internal:9000}
+  cloud:
+    config:
+      name: ${spring.application.name}, endpoints, rabbitmq, eureka-client
