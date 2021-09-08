@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>events</module>
+        <module>common</module>
         <module>command</module>
         <module>query</module>
     </modules>

@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.putstack</groupId>
-	<artifactId>msa_order_service_command</artifactId>
+	<artifactId>order_service_command</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Command</name>
 	<description>CQRS Command</description>
@@ -16,7 +16,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>msa_order_service_events</artifactId>
+			<artifactId>order_service_common</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>catalog_service_common</artifactId>
 			<version>${project.version}</version>
 			<scope>compile</scope>
 		</dependency>
@@ -60,7 +66,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.putstack.msa_order_service_command.MsaOrderServiceApplication</mainClass>
+                            <mainClass>com.putstack.order_service_command.OrderServiceApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>

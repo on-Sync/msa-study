@@ -1,7 +1,9 @@
 package com.putstack.catalog_service_command.aggregate;
 
-import com.putstack.catalog_service_command.command.ProductRegisterCommand;
-import com.putstack.catalog_service_events.events.ProductRegisterEvent;
+import com.putstack.catalog_service_common.commands.ProductPurchaseCommand;
+import com.putstack.catalog_service_common.commands.ProductRegisterCommand;
+import com.putstack.catalog_service_common.events.ProductPurchaseEvent;
+import com.putstack.catalog_service_common.events.ProductRegisterEvent;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -41,7 +43,7 @@ public class CatalogAggregate {
     }
 
     @EventSourcingHandler
-    public void createCatalog(ProductRegisterEvent event) {
+    public void on(ProductRegisterEvent event) {
         log.debug("AggregateLifecycle.apply {}", event);
 
         this.productId = event.getProductId();
@@ -50,5 +52,31 @@ public class CatalogAggregate {
         this.categoryCode = event.getCategoryCode();
         this.stock = event.getStock();
         this.unitPrice = event.getUnitPrice();
+    }
+
+    @CommandHandler
+    public void on(ProductPurchaseCommand command) {
+        log.debug("CommandHandler {}", command);
+        
+        AggregateLifecycle.apply(new ProductPurchaseEvent(
+            command.getProductId(), 
+            command.getQty()
+        ));
+    }
+
+    @EventSourcingHandler
+    public void on(ProductPurchaseEvent event) {
+        log.debug("AggregateLifecycle.apply {}", event);
+
+        try {
+            this.productId = event.getProductId();
+            if (this.stock > event.getQty()) {
+                this.stock -= event.getQty();
+            } else {
+                    throw new Exception("not enough stock");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

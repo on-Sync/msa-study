@@ -3,10 +3,10 @@ package com.putstack.catalog_service_command.service;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-import com.putstack.catalog_service_command.command.ProductPurchaseCommand;
-import com.putstack.catalog_service_command.command.ProductRegisterCommand;
 import com.putstack.catalog_service_command.dto.ProductPurchaseDTO;
 import com.putstack.catalog_service_command.dto.ProductRegisterDTO;
+import com.putstack.catalog_service_common.commands.ProductPurchaseCommand;
+import com.putstack.catalog_service_common.commands.ProductRegisterCommand;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateIdentifier;

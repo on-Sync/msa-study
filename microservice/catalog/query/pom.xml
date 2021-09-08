@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.putstack</groupId>
-		<artifactId>order_service</artifactId>
+		<artifactId>catalog_service</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.putstack</groupId>
-	<artifactId>order_service_query</artifactId>
+	<artifactId>catalog_service_query</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Query</name>
 	<description>CQRS Query</description>
@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>order_service_common</artifactId>
+			<artifactId>catalog_service_common</artifactId>
 			<version>${project.version}</version>
             <scope>compile</scope>
 		</dependency>

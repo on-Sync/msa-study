@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>catalog_service_events</artifactId>
+			<artifactId>catalog_service_common</artifactId>
 			<version>${project.version}</version>
 			<scope>compile</scope>
 		</dependency>
