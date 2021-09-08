@@ -10,6 +10,7 @@ spring:
           search-locations:
             - ${project.basedir}/resource/config-repositories
             - ${project.basedir}/resource/config-repositories/{application}
+            - ${project.basedir}/resource/config-repositories/instances
             - ${project.basedir}/resource/config-repositories/settings
         encrypt:
           enabled: false
@@ -30,6 +31,7 @@ spring:
           search-paths:
             - resource/config-repositories
             - resource/config-repositories/{application}
+            - resource/config-repositories/instances
             - resource/config-repositories/settings
           force-pull: true
         encrypt:
