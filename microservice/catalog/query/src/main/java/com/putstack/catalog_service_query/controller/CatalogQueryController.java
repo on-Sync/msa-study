@@ -19,10 +19,10 @@ import lombok.RequiredArgsConstructor;
 public class CatalogQueryController {
     private final QueryService queryService;
 
-    @GetMapping(path = "/orders/{orderId}")
-    public ResponseEntity<ProductSummary> getAccountInfo(@PathVariable @NonNull @NotBlank String orderId){
+    @GetMapping(path = "/products/{productId}")
+    public ResponseEntity<ProductSummary> getAccountInfo(@PathVariable @NonNull @NotBlank String productId){
         return ResponseEntity.status(HttpStatus.OK)
-                             .body(queryService.getCatalogInfo(orderId));
+                             .body(queryService.getCatalogInfo(productId));
     }
 
 }
