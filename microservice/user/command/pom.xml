@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.putstack</groupId>
-		<artifactId>catalog_service</artifactId>
+		<artifactId>user_service</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.putstack</groupId>
-	<artifactId>catalog_service_command</artifactId>
+	<artifactId>user_service_command</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Command</name>
 	<description>CQRS Command</description>
@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>catalog_service_events</artifactId>
+			<artifactId>user_service_common</artifactId>
 			<version>${project.version}</version>
 			<scope>compile</scope>
 		</dependency>

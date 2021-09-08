@@ -3,7 +3,7 @@ package com.putstack.user_service_command.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.putstack.catalog_service_command.aggregate.CatalogAggregate;
+import com.putstack.user_service_command.aggregate.UserAggregate;
 
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.SimpleCommandBus;
@@ -98,7 +98,7 @@ public class AxonConfig {
     public List<AggregateFactory<?>> aggregateFactories(){
         List<AggregateFactory<?>> aggregateFactories = new ArrayList<AggregateFactory<?>>();
         // INFO: add Aggregate.class to list
-        aggregateFactories.add(new GenericAggregateFactory<>(CatalogAggregate.class));
+        aggregateFactories.add(new GenericAggregateFactory<>(UserAggregate.class));
         return aggregateFactories;
     }
 
@@ -121,9 +121,9 @@ public class AxonConfig {
     }
 
     @Bean // INFO: Snapshot repository - for custom aggregate
-    public Repository<CatalogAggregate> catalogAggregateRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTriggerDefinition){
+    public Repository<UserAggregate> catalogAggregateRepository(EventStore eventStore, SnapshotTriggerDefinition snapshotTriggerDefinition){
         return EventSourcingRepository
-                .builder(CatalogAggregate.class)
+                .builder(UserAggregate.class)
                 .eventStore(eventStore)
                 .snapshotTriggerDefinition(snapshotTriggerDefinition)
                 .build();

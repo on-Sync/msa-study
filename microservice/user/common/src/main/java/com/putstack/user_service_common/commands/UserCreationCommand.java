@@ -1,4 +1,4 @@
-package com.putstack.catalog_service_command.command;
+package com.putstack.user_service_common.commands;
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
@@ -9,11 +9,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @ToString
-public class CatalogCreationCommand {
+public class UserCreationCommand {
     @TargetAggregateIdentifier
-    private String catalogId;
     private String userId;
-    private String productId;
-    private int qty;
-    private int unitPrice;
+    private String email;
+    private String password;
+    private String name;
+    private int age;
+    private String address;
+    private String ssn;
 }

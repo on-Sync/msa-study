@@ -1,4 +1,4 @@
-package com.putstack.catalog_service_query;
+package com.putstack.user_service_query;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
