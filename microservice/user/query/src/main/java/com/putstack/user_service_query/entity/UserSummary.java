@@ -1,5 +1,6 @@
 package com.putstack.user_service_query.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 public class UserSummary {
     @Id
     private String userId;
+    @Column(length = 50, nullable = false, unique = true)
     private String email;
     private String password;
     private String name;
