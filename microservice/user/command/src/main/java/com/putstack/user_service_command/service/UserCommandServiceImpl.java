@@ -8,6 +8,7 @@ import com.putstack.user_service_common.commands.UserCreationCommand;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateIdentifier;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class UserCommandServiceImpl implements UserCommandService {
         return commandGateway.send(new UserCreationCommand(
             UUID.randomUUID().toString(),
             userDTO.getEmail(),
-            userDTO.getPassword(),
+            PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(userDTO.getPassword()),
             userDTO.getName(),
             userDTO.getAge(),
             userDTO.getAddress(),
