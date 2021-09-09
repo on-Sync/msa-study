@@ -11,5 +11,5 @@ spring:
     activate.on-profile: stage
   cloud:
     config:
-      uri: ${CONFIG_STORE_URL:http://localhost:9000}
+      uri: ${CONFIG_STORE_URL:http://host.docker.internal:9000}
       fail-fast: true

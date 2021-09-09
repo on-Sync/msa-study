@@ -6,9 +6,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "catalog-service-query")
+@FeignClient(name = "CATALOG-SERVICE-QUERY")
 public interface ProductServiceClient {
 
     @GetMapping(path = "/products/{productId}")
-    ProductResponse getProductInfo(@PathVariable String productId);
+    ProductResponse getProductInfo(@PathVariable(value = "productId") String productId);
 }

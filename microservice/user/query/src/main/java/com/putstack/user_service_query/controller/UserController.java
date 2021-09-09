@@ -26,10 +26,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping(path = "/orders/{orderId}")
-    public ResponseEntity<UserSummary> getAccountInfo(@PathVariable @NonNull @NotBlank String orderId){
+    @GetMapping(path = "/users/{userId}")
+    public ResponseEntity<UserSummary> getUserInfo(@PathVariable @NonNull @NotBlank String userId){
         return ResponseEntity.status(HttpStatus.OK)
-                             .body(queryService.getUserInfo(orderId));
+                             .body(queryService.getUserInfo(userId));
     }
 
 }

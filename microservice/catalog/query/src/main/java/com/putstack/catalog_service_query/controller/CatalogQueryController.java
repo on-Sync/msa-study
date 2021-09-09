@@ -20,7 +20,7 @@ public class CatalogQueryController {
     private final QueryService queryService;
 
     @GetMapping(path = "/products/{productId}")
-    public ResponseEntity<ProductSummary> getAccountInfo(@PathVariable @NonNull @NotBlank String productId){
+    public ResponseEntity<ProductSummary> getProductInfo(@PathVariable @NonNull @NotBlank String productId){
         return ResponseEntity.status(HttpStatus.OK)
                              .body(queryService.getCatalogInfo(productId));
     }

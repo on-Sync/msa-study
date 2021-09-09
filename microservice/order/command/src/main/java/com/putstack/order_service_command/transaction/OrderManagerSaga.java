@@ -27,8 +27,7 @@ public class OrderManagerSaga {
     @StartSaga
     @SagaEventHandler(associationProperty = "orderId")
     public void handle(OrderCreationEvent event) {
-        log.info("SAGA : OrderCreationEvent {} ", event.getOrderId());
-        log.info("SAGA : OrderCreationEvent {} ", event.getProductId());
+        log.info("SAGA : OrderCreationEvent {} ", event.getOrderId(), event.getProductId());
 
         SagaLifecycle.associateWith("productId", event.getProductId());
         commandGateway.send(new ProductPurchaseCommand(event.getProductId(), event.getQty()));

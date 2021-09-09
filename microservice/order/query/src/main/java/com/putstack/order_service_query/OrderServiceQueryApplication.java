@@ -5,10 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = "com.putstack")
-public class OrderServiceCommandApplication {
+public class OrderServiceQueryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OrderServiceCommandApplication.class, args);
+		SpringApplication.run(OrderServiceQueryApplication.class, args);
 	}
 
 }

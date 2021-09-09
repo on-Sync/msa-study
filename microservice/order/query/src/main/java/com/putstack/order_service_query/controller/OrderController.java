@@ -27,7 +27,7 @@ public class OrderController {
     }
 
     @GetMapping(path = "/orders/{orderId}")
-    public ResponseEntity<OrderSummary> getAccountInfo(@PathVariable @NonNull @NotBlank String orderId){
+    public ResponseEntity<OrderSummary> getOrderInfo(@PathVariable @NonNull @NotBlank String orderId){
         return ResponseEntity.status(HttpStatus.OK)
                              .body(queryService.getOrderInfo(orderId));
     }
