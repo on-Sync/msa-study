@@ -1,0 +1,67 @@
+# docker network create spring-cloud-network
+version: '3.4'
+networks:
+  spring-cloud-network:
+    external: true
+services:
+  config-store:
+    image: putstack/config-store
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    environment:
+      - DISCOVERY_URL=http://discovery/eureka:8761
+    ports:
+      - "9000:9000"
+    command: ["echo", "@@@@@@@@@@@@@@@"]
+
+  discovery:
+    image: putstack/discovery
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    environment:
+      - CONFIG_STORE_URL=http://config-store:9000
+    ports:
+      - "8761:8761"
+    depends_on:
+      - config-store
+
+  api-gateway:
+    image: putstack/api-gateway
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    environment:
+      - CONFIG_STORE_URL=http://config-store:9000
+      - DISCOVERY_URL=http://discovery/eureka:8761
+    ports:
+      - "8000:8000"
+    depends_on:
+      - config-store
+
+  order-command:
+    image: putstack/order-command
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    environment:
+      - CONFIG_STORE_URL=http://config-store:9000
+      - DISCOVERY_URL=http://discovery/eureka:8761
+    ports:
+      - "8003:8003"
+    depends_on:
+      - config-store
+
+  order-query:
+    image: putstack/order-query
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    environment:
+      - CONFIG_STORE_URL=http://config-store:9000
+      - DISCOVERY_URL=http://discovery/eureka:8761
+    ports:
+      - "8004:8004"
+    depends_on:
+      - config-store
