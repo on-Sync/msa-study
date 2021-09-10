@@ -12,6 +12,7 @@ services:
       - spring-cloud-network
     environment:
       - EUREKA_URL=http://discovery:8761/eureka
+      - RABBITMQ_HOST=rabbitmq-server
     deploy:
       replicas: 2
     ports:
@@ -49,6 +50,8 @@ services:
     environment:
       - CONFIG_STORE_URL=http://config-store:9000
       - EUREKA_URL=http://discovery:8761/eureka
+      - AXON_SERVER=axon-server:8124
+      - RABBITMQ_HOST=rabbitmq-server
     ports:
       - "8033"
     depends_on:
@@ -61,6 +64,8 @@ services:
     environment:
       - CONFIG_STORE_URL=http://config-store:9000
       - EUREKA_URL=http://discovery:8761/eureka
+      - AXON_SERVER=axon-server:8124
+      - RABBITMQ_HOST=rabbitmq-server
     ports:
       - "8034"
     depends_on:
@@ -74,6 +79,8 @@ services:
     environment:
       - CONFIG_STORE_URL=http://config-store:9000
       - EUREKA_URL=http://discovery:8761/eureka
+      - AXON_SERVER=axon-server:8124
+      - RABBITMQ_HOST=rabbitmq-server
     ports:
       - "8003"
     depends_on:
@@ -86,6 +93,8 @@ services:
     environment:
       - CONFIG_STORE_URL=http://config-store:9000
       - EUREKA_URL=http://discovery:8761/eureka
+      - AXON_SERVER=axon-server:8124
+      - RABBITMQ_HOST=rabbitmq-server
     ports:
       - "8004"
     depends_on:
@@ -99,6 +108,8 @@ services:
     environment:
       - CONFIG_STORE_URL=http://config-store:9000
       - EUREKA_URL=http://discovery:8761/eureka
+      - AXON_SERVER=axon-server:8124
+      - RABBITMQ_HOST=rabbitmq-server
     ports:
       - "8013"
     depends_on:
@@ -111,6 +122,8 @@ services:
     environment:
       - CONFIG_STORE_URL=http://config-store:9000
       - EUREKA_URL=http://discovery:8761/eureka
+      - AXON_SERVER=axon-server:8124
+      - RABBITMQ_HOST=rabbitmq-server
     ports:
       - "8014"
     depends_on:
@@ -127,8 +140,17 @@ services:
     ports:
       - "8024:8024"
       - "8124:8124"
+  # RabbitMQ Server
+  rabbitmq-server:
+    image: rabbitmq:3-management
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    ports:
+      - "5672:5672"
+      - "15672:15672"
   # Zipkin Server
-  axon-server:
+  zipkin-server:
     image: openzipkin/zipkin
     restart: on-failure
     networks:
