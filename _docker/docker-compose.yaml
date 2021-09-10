@@ -4,17 +4,18 @@ networks:
   spring-cloud-network:
     external: true
 services:
+  # Netflix OSS
   config-store:
     image: putstack/config-store
     restart: on-failure
     networks:
       - spring-cloud-network
     environment:
-      - DISCOVERY_URL=http://discovery/eureka:8761
+      - EUREKA_URL=http://discovery:8761/eureka
+    deploy:
+      replicas: 2
     ports:
-      - "9000:9000"
-    command: ["echo", "@@@@@@@@@@@@@@@"]
-
+      - "9000"
   discovery:
     image: putstack/discovery
     restart: on-failure
@@ -26,7 +27,6 @@ services:
       - "8761:8761"
     depends_on:
       - config-store
-
   api-gateway:
     image: putstack/api-gateway
     restart: on-failure
@@ -34,12 +34,38 @@ services:
       - spring-cloud-network
     environment:
       - CONFIG_STORE_URL=http://config-store:9000
-      - DISCOVERY_URL=http://discovery/eureka:8761
+      - EUREKA_URL=http://discovery:8761/eureka
     ports:
       - "8000:8000"
     depends_on:
       - config-store
-
+  # Microservice
+  ## USER-SERVICE
+  user-command:
+    image: putstack/user-command
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    environment:
+      - CONFIG_STORE_URL=http://config-store:9000
+      - EUREKA_URL=http://discovery:8761/eureka
+    ports:
+      - "8033"
+    depends_on:
+      - config-store
+  user-query:
+    image: putstack/user-query
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    environment:
+      - CONFIG_STORE_URL=http://config-store:9000
+      - EUREKA_URL=http://discovery:8761/eureka
+    ports:
+      - "8034"
+    depends_on:
+      - config-store
+  ## ORDER-SERVICE
   order-command:
     image: putstack/order-command
     restart: on-failure
@@ -47,12 +73,11 @@ services:
       - spring-cloud-network
     environment:
       - CONFIG_STORE_URL=http://config-store:9000
-      - DISCOVERY_URL=http://discovery/eureka:8761
+      - EUREKA_URL=http://discovery:8761/eureka
     ports:
-      - "8003:8003"
+      - "8003"
     depends_on:
       - config-store
-
   order-query:
     image: putstack/order-query
     restart: on-failure
@@ -60,8 +85,75 @@ services:
       - spring-cloud-network
     environment:
       - CONFIG_STORE_URL=http://config-store:9000
-      - DISCOVERY_URL=http://discovery/eureka:8761
+      - EUREKA_URL=http://discovery:8761/eureka
     ports:
-      - "8004:8004"
+      - "8004"
     depends_on:
       - config-store
+  ## CATALOG-SERVICE
+  catalog-command:
+    image: putstack/catalog-command
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    environment:
+      - CONFIG_STORE_URL=http://config-store:9000
+      - EUREKA_URL=http://discovery:8761/eureka
+    ports:
+      - "8013"
+    depends_on:
+      - config-store
+  catalog-query:
+    image: putstack/catalog-query
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    environment:
+      - CONFIG_STORE_URL=http://config-store:9000
+      - EUREKA_URL=http://discovery:8761/eureka
+    ports:
+      - "8014"
+    depends_on:
+      - config-store
+  ## Middleware
+  # Axon Server
+  axon-server:
+    image: axoniq/axonserver
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    environment:
+      - AXONIQ_AXONSERVER_DEVMODE_ENABLED=true
+    ports:
+      - "8024:8024"
+      - "8124:8124"
+  # Zipkin Server
+  axon-server:
+    image: openzipkin/zipkin
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    ports:
+      - "9411:9411"
+  # Prometheus Server
+  prometheus-server:
+    image: prom/prometheus
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    ports:
+      - "9090:9090"
+    volumes:
+       - ../resource/etc/prometheus-stage.yaml:/etc/prometheus/prometheus.yml
+  # Grafana Server
+  grafana-server:
+    image: grafana/grafana
+    restart: on-failure
+    networks:
+      - spring-cloud-network
+    ports:
+      - "3000:3000"
+  
+networks: 
+  spring-cloud-network:
+    external: true
