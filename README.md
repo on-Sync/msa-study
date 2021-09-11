@@ -46,6 +46,8 @@ Spring Cloud ( Netflix OSS ) 기반 Microservice
 ### Thought
 
 > 이번 사이드프로젝트는 Java, Spring, Netflix OSS 을 통한 MSA 생태계를 확인하는 것을 중점으로 진행했다. k8s 와 비교했을 때, Auto scaling, Deployment 분야가 부족했기에 Docker Compose, Dockerize 와 같은 3rd party 가 필요했다. 대신 Service mesh, Gateway 등 Infra 쪽을 Java 로 구현할 수 있다는 장점이 있었다. Polyglot 구현이 필수가 아닌 Java 가 주력인 팀에서 사용하기 좋을 것 같다.
+> - [참조 - 서비스 경량화를 위한 MSA 설계 시 고려사항](https://www.samsungsds.com/kr/insights/1239180_4627.html)
+> - [참조 - 넷플릭스로 알아보는 MSA](https://www.samsungsds.com/kr/insights/msa_and_netflix.html)
 
 ### To Do & To Be
 
