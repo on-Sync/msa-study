@@ -51,5 +51,6 @@ Authentication 는 `UsernamePasswordAuthenticationFilter` 를 적용한 `/login`
 ### 2) Thought
 
 > 본 프로젝트는 Java, Spring, Netflix OSS 을 통한 MSA 생태계를 확인하는 것을 중점으로 진행했습니다. k8s 와 비교했을 때, Auto scaling, Deployment 분야가 부족했기에 Docker Compose, Dockerize 와 같은 3rd party 가 필요했습니다. 대신 Service mesh, Gateway 등 Infra 쪽을 Java 로 구현할 수 있다는 장점이 있었고, Polyglot 구현이 필수가 아닌 Java 가 주력인 팀에서 사용하기 좋았습니다.
-- 참고 - [서비스 경량화를 위한 MSA 설계 시 고려사항](https://www.samsungsds.com/kr/insights/1239180_4627.html) 
-           - [넷플릭스로 알아보는 MSA](https://www.samsungsds.com/kr/insights/msa_and_netflix.html)
+- 참고
+  - [서비스 경량화를 위한 MSA 설계 시 고려사항](https://www.samsungsds.com/kr/insights/1239180_4627.html) 
+  - [넷플릭스로 알아보는 MSA](https://www.samsungsds.com/kr/insights/msa_and_netflix.html)
