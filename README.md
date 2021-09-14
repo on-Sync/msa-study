@@ -15,11 +15,11 @@
 > Pattern 기반으로 적용사항을 정리하면 다음과 같다.
 참고 - [microservices.io](https://microservices.io/patterns/index.html)
 
-[1) Application Patterns](https://www.notion.so/35c7e166b73a482c83a18e14e4049026)
+[1) Application Patterns](resource/introduction/application_patterns.md)
 
-[2) Application Infrastructure Patterns](https://www.notion.so/f7a69d76c0354149b48acc4d87e1cb89)
+[2) Application Infrastructure Patterns](resource/introduction/application_infrastructure_patterns.md)
 
-[3) Infrastructure Patterns](https://www.notion.so/631b100477b841b2b7771b936c29658f)
+[3) Infrastructure Patterns](resource/introduction/infrastructure_patterns.md)
 
 ## 3. API Process
 
